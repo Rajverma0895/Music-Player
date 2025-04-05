@@ -97,6 +97,24 @@ body.dark-mode {
     left: 15px;
 }
 
+/* --- Utility Buttons (Save/Load) --- */
+.utility-btn {
+    /* Example positioning - adjust as needed */
+    position: absolute;
+    top: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    /* Adjust left/right based on Add Files button */
+}
+
+/* Position them relative to the Add button */
+#add-files-btn { left: 15px; } /* Assuming this exists */
+#save-playlist-btn { left: 60px; } /* Next to add */
+#load-playlist-btn { left: 105px; } /* Next to save */
+
+/* You might need to adjust spacing or use a flex container */
+
 /* --- Now Playing Section --- */
 .now-playing {
     margin-top: 40px; /* Space below top buttons */
@@ -342,7 +360,80 @@ body.dark-mode {
     cursor: pointer;
 }
 
+/* --- Playback Speed --- */
+.playback-speed-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Or adjust alignment */
+    margin: 10px auto; /* Example margin */
+    gap: 8px;
+    width: fit-content; /* Adjust width as needed */
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.playback-speed-container:hover {
+    opacity: 1;
+}
+
+.playback-speed-container label {
+    cursor: default; /* Icon isn't interactive */
+}
+
+#playback-speed {
+    background-color: var(--control-bg);
+    color: var(--text-color);
+    border: 1px solid var(--highlight-color);
+    border-radius: 4px;
+    padding: 3px 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    outline: none;
+}
+
+#playback-speed:focus {
+    border-color: var(--secondary-color);
+}
 /* --- Playlist --- */
+/* --- Lyrics Display --- */
+.lyrics-container {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid var(--highlight-color);
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Scroll if needed */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.02); /* Subtle background */
+    border-radius: 8px;
+    display: none; /* Initially hidden until lyrics are loaded */
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .lyrics-container {
+     background-color: rgba(255, 255, 255, 0.04); /* Subtle background in dark mode */
+}
+
+.lyrics-container.visible {
+    display: block; /* Show when lyrics are available */
+}
+
+.lyrics-container h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+#lyrics-content {
+    font-family: var(--font-main); /* Inherit font */
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+    white-space: pre-wrap; /* Preserve line breaks and wrap text */
+    margin: 0;
+    padding: 0;
+}
 .playlist-container {
     margin-top: 20px;
     max-height: 150px; /* Limit height */
@@ -407,6 +498,20 @@ body.dark-mode .playlist-container::-webkit-scrollbar-thumb {
 body.dark-mode .playlist-container::-webkit-scrollbar-thumb:hover {
      background: #777;
 }
+/* Optional: Scrollbar styling (copy from playlist container if desired) */
+.lyrics-container::-webkit-scrollbar {
+    width: 5px;
+}
+.lyrics-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.lyrics-container::-webkit-scrollbar-thumb {
+    background: var(--highlight-color);
+    border-radius: 3px;
+}
+body.dark-mode .lyrics-container::-webkit-scrollbar-thumb {
+    background: #555;
+}
 
 /* --- Responsiveness --- */
 @media (max-width: 480px) {
@@ -451,5 +556,10 @@ body.dark-mode .playlist-container::-webkit-scrollbar-thumb:hover {
     }
     .playlist-container {
         max-height: 120px; /* Slightly less height */
+    }
+    /* Optional: Adjust position on smaller screens if needed */
+    .playback-speed-container {
+        /* Maybe move it or adjust margin */
+        margin-top: 5px;
     }
 }
