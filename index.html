@@ -18,6 +18,13 @@
         <button id="add-files-btn" class="player-btn add-btn" title="Add Local Files">
              <i class="fas fa-folder-plus"></i>
         </button>
+        <!-- Add near Add Files button -->
+        <button id="save-playlist-btn" class="player-btn utility-btn" title="Save Playlist">
+            <i class="fas fa-save"></i>
+        </button>
+        <button id="load-playlist-btn" class="player-btn utility-btn" title="Load Playlist">
+            <i class="fas fa-folder-open"></i>
+        </button>
         <input type="file" id="file-input" accept="audio/*" multiple hidden>
 
         <!-- Now Playing Info -->
@@ -71,6 +78,19 @@
             <input type="range" id="volume-bar" value="100" max="100">
         </div>
 
+        <!-- Add near volume or other controls -->
+        <div class="playback-speed-container">
+            <label for="playback-speed" title="Playback Speed"><i class="fas fa-gauge-high"></i></label>
+            <select id="playback-speed">
+                <option value="0.5">0.5x</option>
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+        </div>
+
         <!-- Playlist -->
         <div class="playlist-container">
             <h3>Playlist</h3>
@@ -80,6 +100,11 @@
             </ul>
         </div>
 
+        <!-- Add below controls or playlist -->
+        <div class="lyrics-container" id="lyrics-container">
+            <h4>Lyrics</h4>
+            <pre id="lyrics-content">Lyrics will appear here...</pre>
+        </div>
         <!-- The actual audio element (hidden) -->
         <audio id="audio-source"></audio>
     </div>
